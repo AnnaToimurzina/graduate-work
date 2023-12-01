@@ -29,7 +29,8 @@ from django.urls import path
 from rest_framework_simplejwt.views import (TokenObtainPairView, TokenRefreshView)
 
 from users.apps import UsersConfig
-from users.views import UserCreateView, UserRetrieveAPIView, UserListView, UserUpdateAPIView, UserDestroyAPIView
+from users.views import UserCreateView, UserRetrieveAPIView, UserListView, UserUpdateAPIView, UserDestroyAPIView, \
+    BusyUserView
 
 app_name = UsersConfig.name
 
@@ -41,6 +42,8 @@ urlpatterns = [
     path('list/', UserListView.as_view(), name='user_list'),
     path('update/<int:pk>/', UserUpdateAPIView.as_view(), name='user_update'),
     path('delete/<int:pk>/', UserDestroyAPIView.as_view(), name='user_delete'),
+    path('busy_users/', BusyUserView.as_view(), name='busy_users'),
+
 ]
 
 
