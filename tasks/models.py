@@ -5,7 +5,7 @@ class Task(models.Model):
     task_name = models.CharField(max_length=100)
     description = models.CharField(max_length=500)
     parent_task = models.ForeignKey('self', null=True, blank=True, on_delete=models.CASCADE)
-    executor = models.ForeignKey(User, on_delete=models.CASCADE)
+    executor = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, related_name='task_executor')
     deadline = models.DateField()
     STATUS_CHOICES = [
         ('pending', 'Ожидает'),
