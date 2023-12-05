@@ -1,19 +1,14 @@
-from django.db.models import Q, Count
-from django.db.models import Count, F, Case, When, Value, CharField
-from django.db.models.functions import Coalesce, Concat
 from rest_framework import viewsets, generics
-from rest_framework.response import Response
-
 from users.models import User
-
-
 from .models import Task
-from .serializers import TaskSerializer, ImpotSerializer, ImportantTaskWithUsersSerializer
+from .serializers import TaskSerializer, ImportantTaskWithUsersSerializer
+from .serializers import ImportantSerializer
 
 
 class TaskViewSet(viewsets.ModelViewSet):
     queryset = Task.objects.all()
     serializer_class = TaskSerializer
+
 
 class ImportantTasksView(generics.ListAPIView):
     serializer_class = TaskSerializer
@@ -27,11 +22,13 @@ class ImportantTasksView(generics.ListAPIView):
             parent_task__isnull=False  # Задачи, у которых parent_task не равен None
         )
 
+
 class UserListView(generics.ListAPIView):
     queryset = User.objects.all()
-    serializer_class = ImpotSerializer
+    serializer_class = ImportantSerializer
 
-class ImportantTasksView(generics.ListAPIView):
+
+class EssentialTasksView(generics.ListAPIView):
     serializer_class = ImportantTaskWithUsersSerializer
 
     def get_queryset(self):

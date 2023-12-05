@@ -3,7 +3,6 @@ from tasks.models import Task
 from users.models import User
 
 
-
 class TaskSerializer(serializers.ModelSerializer):
     is_important = serializers.SerializerMethodField()
 
@@ -15,10 +14,11 @@ class TaskSerializer(serializers.ModelSerializer):
         return task.status == 'pending' and (task.parent_task is None or task.parent_task.status == 'processing')
 
 
-class ImpotSerializer(serializers.ModelSerializer):
+class ImportantSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['first_name', 'last_name', 'job_title']
+
 
 class ImportantTaskWithUsersSerializer(serializers.Serializer):
     task_name = serializers.CharField()

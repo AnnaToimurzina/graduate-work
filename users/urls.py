@@ -1,36 +1,9 @@
-
-'''from users.apps import UsersConfig
-
-app_name = UsersConfig.name
-
-urlpatterns = []
 from django.urls import path
-
-from rest_framework.routers import DefaultRouter
-
+from rest_framework_simplejwt.views import TokenObtainPairView
+from rest_framework_simplejwt.views import TokenRefreshView
 from users.apps import UsersConfig
-from users.views import UserCreateView, UserListView, UserRetrieveAPIView, UserUpdateAPIView, UserDestroyAPIView, \
-    UserViewSet
-
-app_name = UsersConfig.name
-
-router = DefaultRouter()
-router.register(r'users', UserViewSet, basename='Users')
-
-urlpatterns = [path('user/create/', UserCreateView.as_view(), name='user_create'),
-               path('user/list/', UserListView.as_view(), name='user_list'),
-    path('user/<int:pk>/', UserRetrieveAPIView.as_view(), name='user_get'),
-    path('user/update/<int:pk>/', UserUpdateAPIView.as_view(), name='user_update'),
-    path('user/delete/<int:pk>/', UserDestroyAPIView.as_view(), name='user_delete'),
-
-] + router.urls'''
-
-from django.urls import path
-from rest_framework_simplejwt.views import (TokenObtainPairView, TokenRefreshView)
-
-from users.apps import UsersConfig
-from users.views import UserCreateView, UserRetrieveAPIView, UserListView, UserUpdateAPIView, UserDestroyAPIView, \
-    BusyUserView
+from users.views import UserCreateView, UserRetrieveAPIView, UserListView
+from users.views import UserUpdateAPIView, UserDestroyAPIView, BusyUserView
 
 app_name = UsersConfig.name
 
@@ -45,11 +18,3 @@ urlpatterns = [
     path('busy_users/', BusyUserView.as_view(), name='busy_users'),
 
 ]
-
-
-
-
-
-
-
-

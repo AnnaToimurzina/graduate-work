@@ -1,6 +1,7 @@
 from django.db import models
 from users.models import User
 
+
 class Task(models.Model):
     task_name = models.CharField(max_length=100)
     description = models.CharField(max_length=500)
@@ -15,13 +16,9 @@ class Task(models.Model):
 
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending')
 
-
-
     def __str__(self):
         return f"{self.task_name} {self.executor} {self.deadline}"
 
     class Meta:
-        verbose_name = 'Задача'
-        verbose_name_plural = 'Задачи'
-
-
+        verbose_name = 'Task'
+        verbose_name_plural = 'Tasks'

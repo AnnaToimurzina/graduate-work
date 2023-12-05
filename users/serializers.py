@@ -1,6 +1,4 @@
-
 from rest_framework import serializers
-
 from tasks.models import Task
 from users.models import User
 
@@ -27,6 +25,3 @@ class BusyUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['count_active_tasks', 'first_name', 'last_name']
-
-
-
